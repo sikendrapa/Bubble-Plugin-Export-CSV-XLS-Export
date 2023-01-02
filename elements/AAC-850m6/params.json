@@ -1,0 +1,10 @@
+{
+    "add_is_visible": true,
+    "category": "visual elements",
+    "default_dim": {
+        "height": 16,
+        "width": 16
+    },
+    "display": "Export CSV",
+    "icon": "ion-android-checkbox-blank"
+}

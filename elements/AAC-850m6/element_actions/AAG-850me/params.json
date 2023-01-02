@@ -1,0 +1,14 @@
+{
+    "caption": "Expot in csv file",
+    "doc": "",
+    "fields": {
+        "AAK": {
+            "caption": "data source",
+            "default_val": "mohan",
+            "editor": "DynamicValue",
+            "name": "data_source",
+            "rank": 0,
+            "value": "text"
+        }
+    }
+}

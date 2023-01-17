@@ -1,11 +1,11 @@
 function(instance, properties, context) {
 
-      function convertToCsv(fName, rows) {
+      function convertToCsv(fName, columns) {
         var csv = '';
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            for (var j = 0; j < row.length; j++) {
-                var val = row[j] === null ? '' : row[j].toString();
+        for (var i = 0; i < columns.length; i++) {
+            var columns = columns[i];
+            for (var j = 0; j < columns.length; j++) {
+                var val = columns[j] === null ? '' : columns[j].toString();
                 val = val.replace(/\t/gi, " ");
                 if (j > 0)
                     csv += '\t';
@@ -40,12 +40,51 @@ function(instance, properties, context) {
             }
         }
     }
+    
+    let ab = properties.data_source;
+    
+    
+     let Img = properties.checkbox;
 
+    if(Img == true){
+    
+        
+        const gridOptions = {
+    defaultExcelExportParams: {
+        addImageToCell: (rowIndex, column, value) => {
+            if (rowIndex === 1 && column.colId === 'athlete') {
+                const myCompanyLogo = getBase64Image('logo.png');
+                return {
+                    image: {
+                        id: 'company_logo',
+                        base64: myCompanyLogo,
+                        imageType: 'png',
+                        fitCell: true
+                    }
+                };
+            }
+        }
+    },
 
+onGridReady: (params) => {
+    fetch('https://www.ag-grid.com/example-assets/small-olympic-winners.json')
+      .then((data) =>
+        createBase64FlagsFromResponse(data, countryCodes, base64flags)
+      )
+      .then((data) => params.api.setRowData(data));
+  },
+        };
+        
+        
+    };
+    
 
-    convertToCsv('download.csv', [
-        [properties.data_source],
-        ['1', 'bawa ji',"name","rollnumber"],
+    
+    
+    
+convertToCsv('download.csv', [
+        [ab,gridOptions],
+        ["gridOptions", 'bawa ji',"name","rollnumber"],
         ['2', 'Español'],
         ['3', 'Français'],
         ['4', 'Português'],
@@ -54,7 +93,7 @@ function(instance, properties, context) {
         ['7', 'Tiếng Việt'],
         ['8', 'Türkçe'],
         ['9', 'Norsk bokmål'],
-        ['10', 'Ελληνικά'],
+        ['10', 'Ελληνικά'],-
         ['11', 'беларускі'],
         ['12', 'русский'],
         ['13', 'Українська'],
@@ -68,6 +107,9 @@ function(instance, properties, context) {
         ['21', '中国'],
         ['22', '한국어'],
         ['23', '日本語'],
-    ])
+    ]);
     
+   
+   
+     
 }

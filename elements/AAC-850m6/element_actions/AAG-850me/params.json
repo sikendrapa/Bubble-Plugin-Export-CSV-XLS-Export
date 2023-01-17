@@ -2,13 +2,19 @@
     "caption": "Expot in csv file",
     "doc": "",
     "fields": {
-        "AAK": {
+        "AAM": {
             "caption": "data source",
-            "default_val": "mohan",
             "editor": "DynamicValue",
             "name": "data_source",
             "rank": 0,
             "value": "text"
+        },
+        "AAO": {
+            "caption": "Checkbox",
+            "default_val": true,
+            "editor": "Checkbox",
+            "name": "checkbox",
+            "rank": 1
         }
     }
 }
